@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1>Profil</h1>
+<hr>
+
+<!-- Başlıq -->
+<header id="profileHeader"></header>
+
+<!-- Haqqımda -->
+<h2 onclick="toggleSection('aboutSection')">Haqqımda (Klikləyin)</h2>
+<hr>
+<div id="aboutSection" class="hidden">
+  <ul id="aboutList"></ul>
+  <input type="text" id="aboutInput" placeholder="Yeni məlumat əlavə et">
+  <button onclick="addAbout()">Əlavə et</button>
+</div>
+
+<blockquote id="aboutText"></blockquote>
+
+<!-- Bacarıqlar -->
+<h3 onclick="toggleSection('skillsSection')">İxtisas üzrə biliklər (Klikləyin)</h3>
+<hr>
+<div id="skillsSection" class="hidden">
+  <table id="skillsTable">
+    <thead>
+      <tr>
+        <th>Kateqoriya</th>
+        <th>Təsvir</th>
+        <th>Əməliyyatlar</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <input type="text" id="skillsCategory" placeholder="Kateqoriya">
+  <input type="text" id="skillsDescription" placeholder="Təsvir">
+  <button onclick="addSkill()">Əlavə et</button>
+</div>
+
+<!-- Əlaqə -->
+<footer>
+  <h3 onclick="toggleSection('contactSection')">Əlaqə məlumatları (Klikləyin)</h3>
+  <hr>
+  <div id="contactSection" class="hidden">
+    <div id="contactList"></div>
+    <input type="text" id="contactInput" placeholder="Yeni əlaqə məlumatı əlavə et">
+    <button onclick="addContact()">Əlavə et</button>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
