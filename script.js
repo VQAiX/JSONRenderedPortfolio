@@ -1,178 +1,109 @@
-// Bütün məlumatlar sabit dəyişənlərdə saxlanılır
-const profileData = {
-  name: "Quliyev Orxan",
-  description: "student at",
-  university: {
-    name: "AzTU",
-    link: "https://aztu.edu.az/az",
-    logo: "https://sso.aztu.edu.az/Content/Login/images/aztu_logo_az.png"
+let data = {};
+const LOCAL_KEY = "lab5Data";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const localData = localStorage.getItem(LOCAL_KEY);
+  if (localData) {
+    data = JSON.parse(localData);
+  } else {
+    const res = await fetch("data.json");
+    data = await res.json();
+    saveToLocalStorage();
   }
-};
+  renderAll();
+});
 
-// Dinamik redaktə və əlavə üçün yenilənə bilən siyahılar
-let aboutData = [
-  "Ad: Orxan",
-  "Soyad: Quliyev",
-  "Yaş: 18",
-  "İxtisas: İnformasiya təhlükəsizliyi",
-  'Universitet: <a href="https://aztu.edu.az/az" target="_blank">AzTU</a>'
-];
+function renderAll() {
+  document.getElementById("profile-text").textContent = data.profile;
 
-const aboutTextContent = `Mən, Azərbaycan Texniki Universitetində (AzTU) İnformasiya Təhlükəsizliyi ixtisası üzrə təhsil alıram.
-<strong>Kibertəhlükəsizlik</strong> sahəsinə dərin marağım var və bu istiqamətdə daimi şəkildə biliklərimi artırmağa çalışıram.
-Praktiki olaraq əsasən <em>Kali Linux və Windows</em> mühitlərində işləyirəm, müxtəlif testlər və analizlər aparıram.
-Proqramlaşdırma sahəsində <i>C++ və Python</i> dilləri üzrə əsas biliklərə malikəm.
-<strong>TryHackMe</strong> platformasında tapşırıqlar üzərində çalışıram və kibertəhlükəsizlik alətləri ilə təcrübəm var.`;
+  const eduList = document.getElementById("education-list");
+  eduList.innerHTML = "";
+  data.education.forEach((edu, i) => {
+    const div = document.createElement("div");
+    div.innerHTML = `${edu} <button onclick="editField('education', ${i})">Düzəliş et</button>`;
+    eduList.appendChild(div);
+  });
 
-let skillsData = [
-  { category: "Əməliyyat Sistemləri", description: "Kali GNU/Linux, Windows" },
-  { category: "Proqramlaşdırma", description: "Python, C++ (əsas səviyyə)" },
-  { category: "Alətlər", description: "Nmap, Metasploit, Burp Suite, Wireshark və s." },
-  { category: "Təcrübə Platformaları", description: "TryHackMe" },
-  { category: "Maraq Sahələri", description: "Sistem zəiflikləri, sosial mühəndislik" }
-];
+  const skillsList = document.getElementById("skills-list");
+  skillsList.innerHTML = "";
+  data.skills.forEach((skill, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `${skill} <button onclick="editField('skills', ${i})">Düzəliş et</button>`;
+    skillsList.appendChild(li);
+  });
 
-let contactData = [
-  "E-mail: quliyevorxan@gmail.com",
-  "Telefon nömrəsi: (+994) 99-999-99-99",
-  'GitHub: <a href="https://github.com/VQAiX" target="_blank">VQAiX</a>'
-];
-
-// Səhifə yüklənəndə bütün bölmələri doldur
-window.onload = function() {
-  loadProfile();
-  loadAbout();
-  loadAboutText();
-  loadSkills();
-  loadContacts();
-};
-
-// Bölməni gizlət/göstər
-function toggleSection(id) {
-  var sec = document.getElementById(id);
-  sec.classList.toggle("hidden");
+  const expList = document.getElementById("experience-list");
+  expList.innerHTML = "";
+  data.experience.forEach((exp, i) => {
+    const div = document.createElement("div");
+    div.className = "major";
+    div.innerHTML = `
+      <h4>${exp.title}</h4>
+      <span>${exp.date}</span>
+      <p>${exp.description}</p>
+      <button onclick="editExperience(${i})">Düzəliş et</button>
+    `;
+    expList.appendChild(div);
+  });
 }
 
-// Profil header
-function loadProfile() {
-  var h = document.getElementById("profileHeader");
-  h.innerHTML = ""
-    + "<h1>" + profileData.name + "</h1>"
-    + "<h3>" + profileData.description + "</h3>"
-    + '<a href="' + profileData.university.link + '" target="_blank">'
-    + '<img src="' + profileData.university.logo + '" alt="' + profileData.university.name + '" width="200" height="100">'
-    + "</a>";
-}
-
-// Haqqımda siyahısı
-function loadAbout() {
-  var list = document.getElementById("aboutList");
-  list.innerHTML = "";
-  for (var i = 0; i < aboutData.length; i++) {
-    list.innerHTML += "<li>"
-      + aboutData[i]
-      + ' <button onclick="editAbout(' + i + ')">Redaktə et</button>'
-      + ' <button onclick="deleteAbout(' + i + ')">Sil</button>'
-      + "</li>";
+function editSection(section) {
+  const container = document.getElementById(`${section}-text`);
+  const current = data[section];
+  const input = prompt("Dəyişmək istədiyiniz mətni daxil edin:", current);
+  if (input !== null) {
+    data[section] = input;
+    saveToLocalStorage();
+    renderAll();
   }
 }
 
-// Haqqımda alt mətni
-function loadAboutText() {
-  document.getElementById("aboutText").innerHTML = aboutTextContent;
-}
-
-// Haqqımda əlavə et
-function addAbout() {
-  var v = document.getElementById("aboutInput").value;
-  aboutData.push(v);
-  document.getElementById("aboutInput").value = "";
-  loadAbout();
-}
-
-// Haqqımda redaktə et
-function editAbout(i) {
-  var v = prompt("Yeni məlumatı daxil edin:", aboutData[i]);
-  aboutData[i] = v;
-  loadAbout();
-}
-
-// Haqqımda sil
-function deleteAbout(i) {
-  aboutData.splice(i, 1);
-  loadAbout();
-}
-
-// Bacarıqları çəkmək
-function loadSkills() {
-  var tb = document.getElementById("skillsTable").getElementsByTagName("tbody")[0];
-  tb.innerHTML = "";
-  for (var i = 0; i < skillsData.length; i++) {
-    tb.innerHTML += "<tr>"
-      + "<td>" + skillsData[i].category + "</td>"
-      + "<td>" + skillsData[i].description + "</td>"
-      + "<td>"
-      + '<button onclick="editSkill(' + i + ')">Redaktə et</button>'
-      + ' <button onclick="deleteSkill(' + i + ')">Sil</button>'
-      + "</td>"
-      + "</tr>";
+function editField(section, index) {
+  const input = prompt("Yeni dəyəri daxil edin:", data[section][index]);
+  if (input !== null) {
+    data[section][index] = input;
+    saveToLocalStorage();
+    renderAll();
   }
 }
 
-// Yeni bacarıq əlavə et
-function addSkill() {
-  var c = document.getElementById("skillsCategory").value;
-  var d = document.getElementById("skillsDescription").value;
-  skillsData.push({ category: c, description: d });
-  document.getElementById("skillsCategory").value = "";
-  document.getElementById("skillsDescription").value = "";
-  loadSkills();
-}
-
-// Bacarıq redaktə et
-function editSkill(i) {
-  var nc = prompt("Yeni kateqoriya:", skillsData[i].category);
-  var nd = prompt("Yeni təsvir:", skillsData[i].description);
-  skillsData[i] = { category: nc, description: nd };
-  loadSkills();
-}
-
-// Bacarıq sil
-function deleteSkill(i) {
-  skillsData.splice(i, 1);
-  loadSkills();
-}
-
-// Əlaqələri çəkmək
-function loadContacts() {
-  var list = document.getElementById("contactList");
-  list.innerHTML = "";
-  for (var i = 0; i < contactData.length; i++) {
-    list.innerHTML += "<p>"
-      + contactData[i]
-      + ' <button onclick="editContact(' + i + ')">Redaktə et</button>'
-      + ' <button onclick="deleteContact(' + i + ')">Sil</button>'
-      + "</p>";
+function editExperience(index) {
+  const title = prompt("Başlıq:", data.experience[index].title);
+  const date = prompt("Tarix:", data.experience[index].date);
+  const desc = prompt("Təsvir:", data.experience[index].description);
+  if (title && date && desc) {
+    data.experience[index] = { title, date, description: desc };
+    saveToLocalStorage();
+    renderAll();
   }
 }
 
-// Yeni əlaqə əlavə et
-function addContact() {
-  var v = document.getElementById("contactInput").value;
-  contactData.push(v);
-  document.getElementById("contactInput").value = "";
-  loadContacts();
+function addField(section) {
+  if (section === "experience") {
+    const title = prompt("Yeni Təcrübə Başlığı:");
+    const date = prompt("Tarix:");
+    const description = prompt("Təsvir:");
+    if (title && date && description) {
+      data.experience.push({ title, date, description });
+    }
+  } else {
+    const input = prompt("Yeni dəyəri daxil edin:");
+    if (input) {
+      data[section].push(input);
+    }
+  }
+  saveToLocalStorage();
+  renderAll();
 }
 
-// Əlaqə redaktə et
-function editContact(i) {
-  var v = prompt("Yeni əlaqə məlumatı:", contactData[i]);
-  contactData[i] = v;
-  loadContacts();
+function saveToLocalStorage() {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
 }
 
-// Əlaqə sil
-function deleteContact(i) {
-  contactData.splice(i, 1);
-  loadContacts();
+function resetFromStorage() {
+  const saved = localStorage.getItem(LOCAL_KEY);
+  if (saved) {
+    data = JSON.parse(saved);
+    renderAll();
+  }
 }

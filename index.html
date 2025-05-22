@@ -1,60 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xülasə</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <div class="container">
+    <aside class="sidebar">
+      <img src="profile.png" alt="Profil Şəkli" class="profile-img" />
+      <h2>Əlaqə</h2>
+      <ul>
+        <li>📞 099 399 76 00</li>
+        <li>📧 <a href="https://github.com/VQAiX">GitHub Hesabım</a></li>
+        <li>📍 Bakı, Azərbaycan</li>
+        <li>🌐 <a href="https://cert.gov.az/">XRİTDX</a></li>
+      </ul>
+      <h2>Təhsil</h2>
+      <div id="education-list"></div>
+      <button onclick="addField('education')">Yeni Təhsil Əlavə Et</button>
 
-<h1>Profil</h1>
-<hr>
+      <h2>Bacarıqlar</h2>
+      <ul id="skills-list"></ul>
+      <button onclick="addField('skills')">Yeni Bacarıq Əlavə Et</button>
 
-<!-- Başlıq -->
-<header id="profileHeader"></header>
+      <h2>Dillər</h2>
+      <ul>
+        <li>Azərbaycan (Əsas)</li>
+        <li>Türkcə (Ümumi)</li>
+        <li>İngilis (Normal)</li>
+        <li>Rus (Orta)</li>
+      </ul>
+    </aside>
 
-<!-- Haqqımda -->
-<h2 onclick="toggleSection('aboutSection')">Haqqımda (Klikləyin)</h2>
-<hr>
-<div id="aboutSection" class="hidden">
-  <ul id="aboutList"></ul>
-  <input type="text" id="aboutInput" placeholder="Yeni məlumat əlavə et">
-  <button onclick="addAbout()">Əlavə et</button>
-</div>
+    <main class="main-content">
+      <header>
+        <h1><strong>QULİYEV</strong> ORXAN</h1>
+        <h3>Kibertəhlükəsizlik Kafedrası</h3>
+      </header>
 
-<blockquote id="aboutText"></blockquote>
+      <section class="profile">
+        <h2>PROFİL</h2>
+        <p id="profile-text"></p>
+        <button onclick="editSection('profile')">Düzəliş et</button>
+      </section>
 
-<!-- Bacarıqlar -->
-<h3 onclick="toggleSection('skillsSection')">İxtisas üzrə biliklər (Klikləyin)</h3>
-<hr>
-<div id="skillsSection" class="hidden">
-  <table id="skillsTable">
-    <thead>
-      <tr>
-        <th>Kateqoriya</th>
-        <th>Təsvir</th>
-        <th>Əməliyyatlar</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <input type="text" id="skillsCategory" placeholder="Kateqoriya">
-  <input type="text" id="skillsDescription" placeholder="Təsvir">
-  <button onclick="addSkill()">Əlavə et</button>
-</div>
+      <section class="experience">
+        <h2>İxtisas üzrə biliklər</h2>
+        <div id="experience-list"></div>
+        <button onclick="addField('experience')">Yeni Təcrübə Əlavə Et</button>
+      </section>
 
-<!-- Əlaqə -->
-<footer>
-  <h3 onclick="toggleSection('contactSection')">Əlaqə məlumatları (Klikləyin)</h3>
-  <hr>
-  <div id="contactSection" class="hidden">
-    <div id="contactList"></div>
-    <input type="text" id="contactInput" placeholder="Yeni əlaqə məlumatı əlavə et">
-    <button onclick="addContact()">Əlavə et</button>
+      <section class="reference">
+        <h2>REFERANSLAR</h2>
+        <p><strong>Əbilov Ələkbər</strong><br>
+        İnformasiya telekomunikasiya texnologiyaları fakültəsi üzrə nümayəndə, AzTU<br>
+        📞 055 795 06 28<br>
+        📧 aztu@aztu.edu.az</p>
+
+        <p><strong>Sadıqzadə Cəfər</strong><br>
+        Veb Proqramlaşdırma üzrə müəllim, AzTU<br>
+        📞 070 992 45 46<br>
+        📧 aztu@aztu.edu.az</p>
+      </section>
+
+      <button onclick="saveToLocalStorage()">Yadda Saxla</button>
+      <button onclick="resetFromStorage()">Hamısını Sıfırla</button>
+    </main>
   </div>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

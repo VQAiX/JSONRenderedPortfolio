@@ -1,0 +1,31 @@
+{
+    "profile": "Mən, Azərbaycan Texniki Universitetində (AzTU) İnformasiya Təhlükəsizliyi ixtisası üzrə təhsil alıram. Kibertəhlükəsizlik sahəsinə dərin marağım var və bu istiqamətdə daimi şəkildə biliklərimi artırmağa çalışıram. Praktiki olaraq əsasən Kali Linux və Windows mühitlərində işləyirəm, müxtəlif testlər və analizlər aparıram. Proqramlaşdırma sahəsində C++ və Python dilləri üzrə əsas biliklərə malikəm. TryHackMe platformasında tapşırıqlar üzərində çalışıram və kibertəhlükəsizlik alətləri ilə təcrübəm var.",
+    "education": [
+      "2024<br><strong>Azərbaycan Texniki Universiteti</strong><br>İnformasiya təhlükəsizliyi"
+    ],
+    "skills": [
+      "Kibertəhlükəsizlik həlləri",
+      "Komanda işi",
+      "Sosial Mühəndislik",
+      "Robototexnika",
+      "Effektiv Ünsiyyət",
+      "Tənqidi Düşüncə"
+    ],
+    "experience": [
+      {
+        "title": "Maraq Sahələri",
+        "date": "2023 - İndiyə qədər",
+        "description": "Sistem zəiflikləri, sosial mühəndislik"
+      },
+      {
+        "title": "Təcrübə Platformaları",
+        "date": "2024 - İndiyə qədər",
+        "description": "TryHackMe, HackTheBox, VulnHub"
+      },
+      {
+        "title": "Alətlər",
+        "date": "2024 - İndiyə qədər",
+        "description": "Nmap, Metasploit, Burp Suite, Wireshark və s."
+      }
+    ]
+  }  
