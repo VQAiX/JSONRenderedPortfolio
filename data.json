@@ -1,31 +1,58 @@
 {
+    "firstName": "ORXAN",
+    "lastName": "QULİYEV",
+    "position": "Kibertəhlükəsizlik Kafedrası",
     "profile": "Mən, Azərbaycan Texniki Universitetində (AzTU) İnformasiya Təhlükəsizliyi ixtisası üzrə təhsil alıram. Kibertəhlükəsizlik sahəsinə dərin marağım var və bu istiqamətdə daimi şəkildə biliklərimi artırmağa çalışıram. Praktiki olaraq əsasən Kali Linux və Windows mühitlərində işləyirəm, müxtəlif testlər və analizlər aparıram. Proqramlaşdırma sahəsində C++ və Python dilləri üzrə əsas biliklərə malikəm. TryHackMe platformasında tapşırıqlar üzərində çalışıram və kibertəhlükəsizlik alətləri ilə təcrübəm var.",
     "education": [
-      "2024<br><strong>Azərbaycan Texniki Universiteti</strong><br>İnformasiya təhlükəsizliyi"
+        {
+            "year": "2024",
+            "institution": "Azərbaycan Texniki Universiteti",
+            "major": "İnformasiya təhlükəsizliyi"
+        }
     ],
     "skills": [
-      "Kibertəhlükəsizlik həlləri",
-      "Komanda işi",
-      "Sosial Mühəndislik",
-      "Robototexnika",
-      "Effektiv Ünsiyyət",
-      "Tənqidi Düşüncə"
+        "Kibertəhlükəsizlik həlləri",
+        "Komanda işi",
+        "Sosial Mühəndislik",
+        "Robototexnika",
+        "Effektiv Ünsiyyət",
+        "Tənqidi Düşüncə"
     ],
-    "experience": [
-      {
-        "title": "Maraq Sahələri",
-        "date": "2023 - İndiyə qədər",
-        "description": "Sistem zəiflikləri, sosial mühəndislik"
-      },
-      {
-        "title": "Təcrübə Platformaları",
-        "date": "2024 - İndiyə qədər",
-        "description": "TryHackMe, HackTheBox, VulnHub"
-      },
-      {
-        "title": "Alətlər",
-        "date": "2024 - İndiyə qədər",
-        "description": "Nmap, Metasploit, Burp Suite, Wireshark və s."
-      }
+    "languages": [
+        "Azərbaycan (Əsas)",
+        "Türkcə (Ümumi)",
+        "İngilis (Normal)",
+        "Rus (Orta)"
+    ],
+    "knowledge": [
+        {
+            "title": "Maraq Sahələri",
+            "period": "2023 - İndiyə qədər",
+            "description": "Sistem zəiflikləri, sosial mühəndislik"
+        },
+        {
+            "title": "Təcrübə Platformaları",
+            "period": "2024 - İndiyə qədər",
+            "description": "TryHackMe, HackTheBox, VulnHub"
+        },
+        {
+            "title": "Alətlər",
+            "period": "2024 - İndiyə qədər",
+            "description": "Nmap, Metasploit, Burp Suite, Wireshark və s."
+        }
+    ],
+    "references": [
+        {
+            "name": "Əbilov Ələkbər",
+            "position": "İnformasiya telekomunikasiya texnologiyaları fakültəsi üzrə nümayəndə, AzTU",
+            "phone": "055 795 06 28",
+            "email": "aztu@aztu.edu.az"
+        },
+        {
+            "name": "Sadıqzadə Cəfər",
+            "position": "Veb Proqramlaşdırma üzrə müəllim, AzTU",
+            "phone": "070 992 45 46",
+            "email": "aztu@aztu.edu.az"
+        }
     ]
-  }  
+}

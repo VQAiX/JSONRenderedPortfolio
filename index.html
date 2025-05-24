@@ -1,74 +1,174 @@
-<!DOCTYPE html>
-<html lang="az">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Xülasə</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xülasə</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <img src="profile.png" alt="Profil Şəkli" class="profile-img" />
-      <h2>Əlaqə</h2>
-      <ul>
-        <li>📞 099 399 76 00</li>
-        <li>📧 <a href="https://github.com/VQAiX">GitHub Hesabım</a></li>
-        <li>📍 Bakı, Azərbaycan</li>
-        <li>🌐 <a href="https://cert.gov.az/">XRİTDX</a></li>
-      </ul>
-      <h2>Təhsil</h2>
-      <div id="education-list"></div>
-      <button onclick="addField('education')">Yeni Təhsil Əlavə Et</button>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="profile.png" alt="Profil Şəkli" class="profile-img">
+            
+            <div class="section-toggle">
+                <h2 onclick="toggleSection('contact')">Əlaqə ▼</h2>
+                <div id="contact-section">
+                    <ul id="contact-list">
+                        <li>📞 <span class="editable" data-field="phone">099 399 76 00</span> <button class="edit-btn" onclick="editField(this)">✏️</button></li>
+                        <li>📧 <a href="https://github.com/VQAiX" class="editable" data-field="github">GitHub Hesabım</a> <button class="edit-btn" onclick="editField(this)">✏️</button></li>
+                        <li>📍 <span class="editable" data-field="location">Bakı, Azərbaycan</span> <button class="edit-btn" onclick="editField(this)">✏️</button></li>
+                        <li>🌐 <a href="https://cert.gov.az/" class="editable" data-field="website">XRİTDX</a> <button class="edit-btn" onclick="editField(this)">✏️</button></li>
+                    </ul>
+                    <button onclick="addNewContact()">+ Yeni Əlaqə Əlavə Et</button>
+                </div>
+            </div>
 
-      <h2>Bacarıqlar</h2>
-      <ul id="skills-list"></ul>
-      <button onclick="addField('skills')">Yeni Bacarıq Əlavə Et</button>
+            <div class="section-toggle">
+                <h2 onclick="toggleSection('education')">Təhsil ▼</h2>
+                <div id="education-section">
+                    <div id="education-list">
+                        <div class="education-item">
+                            <p><span class="editable" data-field="education-year">2024</span><br>
+                            <strong class="editable" data-field="education-institution">Azərbaycan Texniki Universiteti</strong><br>
+                            <span class="editable" data-field="education-major">İnformasiya təhlükəsizliyi</span>
+                            <button class="edit-btn" onclick="editField(this)">✏️</button>
+                            <button class="delete-btn" onclick="deleteEducation(this)">🗑️</button></p>
+                        </div>
+                    </div>
+                    <button onclick="addNewEducation()">+ Yeni Təhsil Əlavə Et</button>
+                </div>
+            </div>
 
-      <h2>Dillər</h2>
-      <ul>
-        <li>Azərbaycan (Əsas)</li>
-        <li>Türkcə (Ümumi)</li>
-        <li>İngilis (Normal)</li>
-        <li>Rus (Orta)</li>
-      </ul>
-    </aside>
+            <div class="section-toggle">
+                <h2 onclick="toggleSection('skills')">Bacarıqlar ▼</h2>
+                <div id="skills-section">
+                    <ul id="skills-list">
+                        <li><span class="editable" data-field="skill">Kibertəhlükəsizlik həlləri</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteSkill(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="skill">Komanda işi</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteSkill(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="skill">Sosial Mühəndislik</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteSkill(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="skill">Robototexnika</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteSkill(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="skill">Effektiv Ünsiyyət</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteSkill(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="skill">Tənqidi Düşüncə</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteSkill(this)">🗑️</button></li>
+                    </ul>
+                    <button onclick="addNewSkill()">+ Yeni Bacarıq Əlavə Et</button>
+                </div>
+            </div>
 
-    <main class="main-content">
-      <header>
-        <h1><strong>QULİYEV</strong> ORXAN</h1>
-        <h3>Kibertəhlükəsizlik Kafedrası</h3>
-      </header>
+            <div class="section-toggle">
+                <h2 onclick="toggleSection('languages')">Dillər ▼</h2>
+                <div id="languages-section">
+                    <ul id="languages-list">
+                        <li><span class="editable" data-field="language">Azərbaycan (Əsas)</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteLanguage(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="language">Türkcə (Ümumi)</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteLanguage(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="language">İngilis (Normal)</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteLanguage(this)">🗑️</button></li>
+                        <li><span class="editable" data-field="language">Rus (Orta)</span> <button class="edit-btn" onclick="editField(this)">✏️</button> <button class="delete-btn" onclick="deleteLanguage(this)">🗑️</button></li>
+                    </ul>
+                    <button onclick="addNewLanguage()">+ Yeni Dil Əlavə Et</button>
+                </div>
+            </div>
+        </aside>
 
-      <section class="profile">
-        <h2>PROFİL</h2>
-        <p id="profile-text"></p>
-        <button onclick="editSection('profile')">Düzəliş et</button>
-      </section>
+        <main class="main-content">
+            <header>
+                <h1><strong class="editable" data-field="last-name">QULİYEV</strong> <span class="editable" data-field="first-name">ORXAN</span> <button class="edit-btn" onclick="editField(this)">✏️</button></h1>
+                <h3><span class="editable" data-field="position">Kibertəhlükəsizlik Kafedrası</span> <button class="edit-btn" onclick="editField(this)">✏️</button></h3>
+            </header>
 
-      <section class="experience">
-        <h2>İxtisas üzrə biliklər</h2>
-        <div id="experience-list"></div>
-        <button onclick="addField('experience')">Yeni Təcrübə Əlavə Et</button>
-      </section>
+            <section class="profile">
+                <h2>PROFİL</h2>
+                <div class="editable" data-field="profile" contenteditable="true">
+                    Mən, Azərbaycan Texniki Universitetində (AzTU) İnformasiya Təhlükəsizliyi ixtisası üzrə təhsil alıram. Kibertəhlükəsizlik sahəsinə dərin marağım var və bu istiqamətdə daimi şəkildə biliklərimi artırmağa çalışıram. Praktiki olaraq əsasən Kali Linux və Windows mühitlərində işləyirəm, müxtəlif testlər və analizlər aparıram. Proqramlaşdırma sahəsində C++ və Python dilləri üzrə əsas biliklərə malikəm. TryHackMe platformasında tapşırıqlar üzərində çalışıram və kibertəhlükəsizlik alətləri ilə təcrübəm var.
+                </div>
+            </section>
 
-      <section class="reference">
-        <h2>REFERANSLAR</h2>
-        <p><strong>Əbilov Ələkbər</strong><br>
-        İnformasiya telekomunikasiya texnologiyaları fakültəsi üzrə nümayəndə, AzTU<br>
-        📞 055 795 06 28<br>
-        📧 aztu@aztu.edu.az</p>
+            <section class="experience">
+                <h2>İxtisas üzrə biliklər</h2>
+                <div id="knowledge-list">
+                    <div class="major knowledge-item">
+                        <h4 class="editable" data-field="knowledge-title">Maraq Sahələri</h4>
+                        <span class="editable" data-field="knowledge-period">2023 - İndiyə qədər</span>
+                        <p class="editable" data-field="knowledge-description">
+                            Sistem zəiflikləri, sosial mühəndislik
+                        </p>
+                        <button class="edit-btn" onclick="editField(this)">✏️</button>
+                        <button class="delete-btn" onclick="deleteKnowledge(this)">🗑️</button>
+                    </div>
+                    <div class="major knowledge-item">
+                        <h4 class="editable" data-field="knowledge-title">Təcrübə Platformaları</h4>
+                        <span class="editable" data-field="knowledge-period">2024 - İndiyə qədər</span>
+                        <p class="editable" data-field="knowledge-description">
+                            TryHackMe, HackTheBox, VulnHub
+                        </p>
+                        <button class="edit-btn" onclick="editField(this)">✏️</button>
+                        <button class="delete-btn" onclick="deleteKnowledge(this)">🗑️</button>
+                    </div>
+                    <div class="major knowledge-item">
+                        <h4 class="editable" data-field="knowledge-title">Alətlər</h4>
+                        <span class="editable" data-field="knowledge-period">2024 - İndiyə qədər</span>
+                        <p class="editable" data-field="knowledge-description">
+                            Nmap, Metasploit, Burp Suite, Wireshark və s.
+                        </p>
+                        <button class="edit-btn" onclick="editField(this)">✏️</button>
+                        <button class="delete-btn" onclick="deleteKnowledge(this)">🗑️</button>
+                    </div>
+                </div>
+                <button onclick="addNewKnowledge()">+ Yeni Bilik Əlavə Et</button>
+            </section>
 
-        <p><strong>Sadıqzadə Cəfər</strong><br>
-        Veb Proqramlaşdırma üzrə müəllim, AzTU<br>
-        📞 070 992 45 46<br>
-        📧 aztu@aztu.edu.az</p>
-      </section>
+            <section class="reference">
+                <h2>REFERANSLAR</h2>
+                <div id="references-list">
+                    <div class="reference-item">
+                        <p><strong class="editable" data-field="reference-name">Əbilov Ələkbər</strong><br>
+                        <span class="editable" data-field="reference-position">İnformasiya telekomunikasiya texnologiyaları fakültəsi üzrə nümayəndə, AzTU</span><br>
+                        📞 <span class="editable" data-field="reference-phone">055 795 06 28</span><br>
+                        📧 <span class="editable" data-field="reference-email">aztu@aztu.edu.az</span>
+                        <button class="edit-btn" onclick="editField(this)">✏️</button>
+                        <button class="delete-btn" onclick="deleteReference(this)">🗑️</button></p>
+                    </div>
+                    <div class="reference-item">
+                        <p><strong class="editable" data-field="reference-name">Sadıqzadə Cəfər</strong><br>
+                        <span class="editable" data-field="reference-position">Veb Proqramlaşdırma üzrə müəllim, AzTU</span><br>
+                        📞 <span class="editable" data-field="reference-phone">070 992 45 46</span><br>
+                        📧 <span class="editable" data-field="reference-email">aztu@aztu.edu.az</span>
+                        <button class="edit-btn" onclick="editField(this)">✏️</button>
+                        <button class="delete-btn" onclick="deleteReference(this)">🗑️</button></p>
+                    </div>
+                </div>
+                <form id="reference-form" class="hidden">
+                    <h3>Yeni Referans Əlavə Et</h3>
+                    <div>
+                        <label>Ad Soyad:</label>
+                        <input type="text" id="new-reference-name" required>
+                    </div>
+                    <div>
+                        <label>Vəzifə:</label>
+                        <input type="text" id="new-reference-position" required>
+                    </div>
+                    <div>
+                        <label>Telefon:</label>
+                        <input type="text" id="new-reference-phone" required>
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type="email" id="new-reference-email" required>
+                    </div>
+                    <button type="button" onclick="submitNewReference()">Əlavə Et</button>
+                    <button type="button" onclick="cancelNewReference()">Ləğv Et</button>
+                </form>
+                <button onclick="showReferenceForm()">+ Yeni Referans Əlavə Et</button>
+            </section>
 
-      <button onclick="saveToLocalStorage()">Yadda Saxla</button>
-      <button onclick="resetFromStorage()">Hamısını Sıfırla</button>
-    </main>
-  </div>
-  <script src="script.js"></script>
+            <div class="action-buttons">
+                <button onclick="saveAllData()">Yadda Saxla</button>
+                <button onclick="resetAllData()">Hamısını Sıfırla</button>
+                <button onclick="toggleEditMode()">Redaktə Rejimi</button>
+                <button onclick="loadFromJSON()">JSON-dan Yüklə</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
