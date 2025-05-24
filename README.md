@@ -1,0 +1,1 @@
+"Veb s?hif?nin strukturu t?l?bl?r? uygunlasdirildi" 
